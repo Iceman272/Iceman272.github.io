@@ -13,6 +13,7 @@
 	let counters = [0, 0, 0, 0, 0];
 	let counterNames = ["Happy", "Sad", "Angry", "Disgust", "Fear"];
 	let checker = false;
+	let link = "";
 	
 	function vidShuffle(input){
 		
@@ -26,6 +27,7 @@
 		
 		collection.setAttribute('src', input);
 		elms.setAttribute('src', input);
+		return;
 		
 	}
 	
@@ -36,9 +38,9 @@
 		let max = Math.max(...counters);
 		let maxIndex = counters.indexOf(max);
 		//console.log(counterNames[maxIndex] + ": " + max);
-		document.getElementById('vid').src = message;
+		document.getElementById('vid').src = link;
 		ThunkableWebviewerExtension.postMessage(maxIndex);
-		vidShuffle(message);
+		vidShuffle(link);
 		checker = false;
 		return;
 	}
@@ -75,6 +77,7 @@
 		
 	// when we get a message from the app, display it on the page
 	ThunkableWebviewerExtension.receiveMessage(function(message) {
+		link = message;
 	 if(checker == true){
 		//document.getElementById("BeginButton").textContent = "CLICK ME TO BEGIN";
 		let max = Math.max(...counters);
