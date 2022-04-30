@@ -3,8 +3,8 @@
   <meta name="mphtools-feature" content="compatibilityUI, cameraPrivacyPopup, compatibilityAutoCheck">
 </head>
 <body>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/gSMK7b7DLrE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed//gSMK7b7DLrE' frameborder='0' allowfullscreen></iframe></div>
+	
+  <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe id= 'vid' src='https://www.youtube.com/embed//gSMK7b7DLrE' frameborder='0' allowfullscreen></iframe></div>
   <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js" type="text/javascript"></script>
   <script src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
 	<script src="https://ai-sdk.morphcast.com/v1.16/ai-sdk.js"></script>
@@ -55,15 +55,43 @@
 		
 	// when we get a message from the app, display it on the page
 	ThunkableWebviewerExtension.receiveMessage(function(message) {
-	  let storedCounters = counters.map((x) => x);
-	  let max = Math.max(...storedCounters);
-	  let maxIndex = storedCounters.indexOf(max);
-	  if(maxIndex == -1){
-	  	maxIndex = 0;
-	  }
-	  console.log(max);
-	  //console.log(counterNames[maxIndex] + ": " + max);
-	  ThunkableWebviewerExtension.postMessage(maxIndex);
+	 if(message == 'END'){
+		//document.getElementById("BeginButton").textContent = "CLICK ME TO BEGIN";
+		let max = Math.max(...counters);
+		let maxIndex = counters.indexOf(max);
+		//console.log(counterNames[maxIndex] + ": " + max);
+		ThunkableWebviewerExtension.postMessage(maxIndex);
+		return;
+	}
+		document.getElementById('vid').src = message;
+		
+		CY.loader()
+	   .licenseKey("ed6a12c60375cfd79dca1cb5dcc58fd0f684c0b62c2c")
+	   .addModule(CY.modules().FACE_AGE.name)
+	   .addModule(CY.modules().FACE_GENDER.name)
+	   .addModule(CY.modules().FACE_EMOTION.name)
+	   .load()
+	   .then(({ start, stop }) => start());
+	   
+	window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
+		if(evt.detail.output.dominantEmotion == "Happy"){
+			counters[0] += 1;
+		}
+		if(evt.detail.output.dominantEmotion == "Sad"){
+			counters[1] += 1;
+		}
+		if(evt.detail.output.dominantEmotion == "Angry"){
+			counters[2] += 1;
+		}
+		if(evt.detail.output.dominantEmotion == "Disgust"){
+			counters[3] += 1;
+		}
+		if(evt.detail.output.dominantEmotion == "Fear"){
+			counters[4] += 1;
+		}
+	});
+	
+	//document.getElementById("BeginButton").textContent = 'CLICK ME TO END';
 	});
 	</script>
 </body>
