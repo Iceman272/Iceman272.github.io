@@ -38,6 +38,7 @@
 		//console.log(counterNames[maxIndex] + ": " + max);
 		document.getElementById('vid').src = message;
 		ThunkableWebviewerExtension.postMessage(maxIndex);
+		vidShuffle(message);
 		checker = false;
 		return;
 	}
@@ -81,6 +82,7 @@
 		//console.log(counterNames[maxIndex] + ": " + max);
 		document.getElementById('vid').src = message;
 		ThunkableWebviewerExtension.postMessage(maxIndex);
+		 vidShuffle(message);
 		 checker = false;
 		return;
 	}
