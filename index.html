@@ -14,6 +14,7 @@
 	let counterNames = ["Happy", "Sad", "Angry", "Disgust", "Fear"];
 	let checker = false;
 	
+	
 	function initRecog(button){
 		
 	if(checker == true){
@@ -24,7 +25,7 @@
 		ThunkableWebviewerExtension.postMessage(maxIndex);
 		return;
 	}
-		//document.getElementById('vid').src = message;
+		document.getElementById('vid').src = message;
 		
 		CY.loader()
 	   .licenseKey("ed6a12c60375cfd79dca1cb5dcc58fd0f684c0b62c2c")
@@ -65,7 +66,7 @@
 		ThunkableWebviewerExtension.postMessage(maxIndex);
 		return;
 	}
-		//document.getElementById('vid').src = message;
+		document.getElementById('vid').src = message;
 	});
 	</script>
 </body>
