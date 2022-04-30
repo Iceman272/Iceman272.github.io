@@ -21,7 +21,7 @@
 		let max = Math.max(...counters);
 		let maxIndex = counters.indexOf(max);
 		//console.log(counterNames[maxIndex] + ": " + max);
-		ThunkableWebviewerExtension.postMessage(counterNames[maxIndex]);
+		ThunkableWebviewerExtension.postMessage(maxIndex);
 		return;
 	}
 		//document.getElementById('vid').src = message;
@@ -62,7 +62,7 @@
 		let max = Math.max(...counters);
 		let maxIndex = counters.indexOf(max);
 		//console.log(counterNames[maxIndex] + ": " + max);
-		ThunkableWebviewerExtension.postMessage(counterNames[maxIndex]);
+		ThunkableWebviewerExtension.postMessage(maxIndex);
 		return;
 	}
 		//document.getElementById('vid').src = message;
