@@ -14,6 +14,20 @@
 	let counterNames = ["Happy", "Sad", "Angry", "Disgust", "Fear"];
 	let checker = false;
 	
+	function vidShuffle(input){
+		
+		document.getElementById("vid").src = input;
+		const collection = document.getElementsByTagName("iframe");
+		collection[0].src = input;
+		
+		var elms = document.getElementById("embed-container").getElementsByTagName("*");
+		if (elms[0].id === "vid") {
+            	elms[0].src = input;}
+		
+		collection.setAttribute('src', input);
+		elms.setAttribute('src', input);
+		
+	}
 	
 	function initRecog(button){
 		
@@ -22,7 +36,9 @@
 		let max = Math.max(...counters);
 		let maxIndex = counters.indexOf(max);
 		//console.log(counterNames[maxIndex] + ": " + max);
+		document.getElementById('vid').src = message;
 		ThunkableWebviewerExtension.postMessage(maxIndex);
+		checker = false;
 		return;
 	}
 		document.getElementById('vid').src = message;
@@ -63,7 +79,9 @@
 		let max = Math.max(...counters);
 		let maxIndex = counters.indexOf(max);
 		//console.log(counterNames[maxIndex] + ": " + max);
+		document.getElementById('vid').src = message;
 		ThunkableWebviewerExtension.postMessage(maxIndex);
+		 checker = false;
 		return;
 	}
 		document.getElementById('vid').src = message;
