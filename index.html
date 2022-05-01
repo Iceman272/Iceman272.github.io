@@ -15,10 +15,10 @@ o<html>
 	let checker = false;
 	let link = "";
 	
-	function linkChange() {
-		document.getElementById('vid').src = link;
-  		return; 
-	}
+	ThunkableWebviewerExtension.receiveMessage(function(message) {
+    		link = message;
+		document.getElementById('vid').src = message;
+	});
 	
 	function initRecog(button){
 		//vidShuffle(link);
@@ -33,7 +33,6 @@ o<html>
 		return;
 	}
 		//document.getElementById('vid').src = link;
-		linkChange();
 		
 		CY.loader()
 	   .licenseKey("ed6a12c60375cfd79dca1cb5dcc58fd0f684c0b62c2c")
@@ -67,7 +66,7 @@ o<html>
 	// when we get a message from the app, display it on the page
 	ThunkableWebviewerExtension.receiveMessage(function(message) {
 		link = message;
-		linkChange();
+		document.getElementById('vid').src = message;
 		//vidShuffle(link);
 	 if(checker == true){
 		//document.getElementById("BeginButton").textContent = "CLICK ME TO BEGIN";
