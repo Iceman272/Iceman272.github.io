@@ -42,6 +42,7 @@ o<html>
 		let max = Math.max(...counters);
 		let maxIndex = counters.indexOf(max);
 		//console.log(counterNames[maxIndex] + ": " + max);
+		counter++;
 		document.getElementById('vid').src = videoList(maxIndex);
 		ThunkableWebviewerExtension.postMessage(maxIndex);
 		checker = false;
