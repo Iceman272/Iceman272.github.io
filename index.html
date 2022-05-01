@@ -60,7 +60,7 @@ o<html>
 		let maxIndex = counters.indexOf(max);
 		//console.log(counterNames[maxIndex] + ": " + max);
 		counter = counter + 1;
-		document.getElementById('vid').src = videoList(maxIndex);//and endTracker instead
+		document.getElementById('vid').src = videoList(endTracker);//and endTracker instead
 		ThunkableWebviewerExtension.postMessage(maxIndex);
 		checker = false;
 		return;
