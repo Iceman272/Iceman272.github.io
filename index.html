@@ -61,7 +61,7 @@ o<html>
 		//console.log(counterNames[maxIndex] + ": " + max);
 		counter = counter + 1;
 		document.getElementById('vid').src = videoList(maxIndex);
-		ThunkableWebviewerExtension.postMessage(endTracker);
+		ThunkableWebviewerExtension.postMessage(counter);
 		checker = false;
 		return;
 	}
