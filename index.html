@@ -15,24 +15,10 @@
 	let checker = false;
 	let link = "";
 	
-	function vidShuffle(input){
-		
-		document.getElementById("vid").src = input;
-		const collection = document.getElementsByTagName("iframe");
-		collection[0].src = input;
-		
-		var elms = document.getElementById("embed-container").getElementsByTagName("*");
-		if (elms[0].id === "vid") {
-            	elms[0].src = input;}
-		
-		collection.setAttribute('src', input);
-		elms.setAttribute('src', input);
-		return;
-		
-	}
+	
 	
 	function initRecog(button){
-		vidShuffle(link);
+		//vidShuffle(link);
 	if(checker == true){
 		//document.getElementById("BeginButton").textContent = "CLICK ME TO BEGIN";
 		let max = Math.max(...counters);
@@ -77,7 +63,7 @@
 	// when we get a message from the app, display it on the page
 	ThunkableWebviewerExtension.receiveMessage(function(message) {
 		link = message;
-		vidShuffle(link);
+		//vidShuffle(link);
 	 if(checker == true){
 		//document.getElementById("BeginButton").textContent = "CLICK ME TO BEGIN";
 		let max = Math.max(...counters);
